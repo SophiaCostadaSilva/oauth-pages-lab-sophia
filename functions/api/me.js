@@ -1,10 +1,5 @@
-import {
-  sha256Base64Url
-} from "../../_shared/crypto.js";
-
-import {
-  getCookie
-} from "../../_shared/cookies.js";
+import { getCookie } from "../_shared/cookies.js";
+import { sha256Base64Url } from "../_shared/crypto.js";
 
 export async function onRequestGet(context) {
   const cookie =
