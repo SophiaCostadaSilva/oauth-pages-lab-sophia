@@ -1,11 +1,11 @@
 import {
   getCookie,
   clearSessionCookie
-} from "../../_shared/cookies.js";
+} from "../_shared/cookies.js";
 
 import {
   sha256Base64Url
-} from "../../_shared/crypto.js";
+} from "../_shared/crypto.js";
 
 export async function onRequestPost(context) {
   const request =
