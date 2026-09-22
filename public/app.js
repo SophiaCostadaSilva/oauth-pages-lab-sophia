@@ -53,3 +53,21 @@ fetch("/api/me", {
         "Não foi possível consultar a sessão.";
     }
   });
+
+
+const logout =
+  document.getElementById("logout");
+
+if (logout) {
+  logout.addEventListener("click", async () => {
+    const response =
+      await fetch("/oauth/logout", {
+        method: "POST",
+        credentials: "same-origin"
+      });
+
+    if (response.ok) {
+      window.location.href = "/";
+    }
+  });
+}
