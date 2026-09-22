@@ -25,11 +25,12 @@ function noStoreHeaders(extra = {}) {
   };
 }
 
-function errorResponse(status = 400) {
-  return new Response("Authentication failed", {
+function errorResponse(status = 400, reason = "unknown") {
+  return new Response(`Authentication failed: ${reason}`, {
     status,
     headers: noStoreHeaders()
   });
+
 }
 
 export async function onRequestGet(context) {
@@ -384,13 +385,6 @@ async function validateGithubIdentity(
     throw new Error("invalid_github_user");
   }
 
-  /*
-   * O access_token é usado somente
-   * para consultar /user.
-   *
-   * Depois a autorização é revogada
-   * antes da criação da sessão local.
-   */
   const revokeResponse =
     await fetch(
       `https://api.github.com/applications/${encodeURIComponent(clientId)}/grant`,
