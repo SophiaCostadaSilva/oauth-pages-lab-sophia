@@ -74,8 +74,8 @@ export async function onRequestGet(context) {
     );
 
   if (!transactionCookie) {
-    return errorResponse();
-  }
+  return errorResponse(400, "missing_transaction_cookie");
+}
 
   const transactionHash =
     await sha256Base64Url(
