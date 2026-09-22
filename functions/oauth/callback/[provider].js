@@ -253,15 +253,26 @@ export async function onRequestGet(context) {
       )
       .run();
 
+    const responseHeaders =
+      new Headers(
+        noStoreHeaders({
+          "Location": baseUrl
+        })
+      );
+
+    responseHeaders.append(
+      "Set-Cookie",
+      sessionCookie(sessionValue)
+    );
+
+    responseHeaders.append(
+      "Set-Cookie",
+      clearOauthTransactionCookie()
+    );
+
     return new Response(null, {
       status: 302,
-      headers: noStoreHeaders({
-        "Location": baseUrl,
-        "Set-Cookie": [
-          sessionCookie(sessionValue),
-          clearOauthTransactionCookie()
-        ].join(", ")
-      })
+      headers: responseHeaders
     });
 
   } catch (error) {
