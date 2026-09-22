@@ -132,12 +132,7 @@ export async function onRequestGet(context) {
   ) {
     return errorResponse();
   }
-
-  /*
-   * A transação é removida antes
-   * de concluir o fluxo.
-   * Isso também impede reutilização.
-   */
+  
   await context.env.DB
     .prepare(`
       DELETE FROM oauth_transactions
@@ -375,8 +370,10 @@ async function validateGithubIdentity(
     );
 
   if (!userResponse.ok) {
-    throw new Error("github_user_failed");
-  }
+  throw new Error(
+    `github_user_failed_${userResponse.status}`
+  );
+    }
 
   const user =
     await userResponse.json();
