@@ -15,8 +15,7 @@ export async function onRequestPost(context) {
     request.headers.get("Origin");
 
   const baseUrl =
-    context.env.PUBLIC_BASE_URL
-      .replace(/\/$/, "");
+    context.env.PUBLIC_BASE_URL.replace(/\/$/, "");
 
   if (origin !== baseUrl) {
     return new Response(
@@ -53,7 +52,6 @@ export async function onRequestPost(context) {
 
   return new Response(null, {
     status: 204,
-
     headers: {
       "Set-Cookie":
         clearSessionCookie(),
