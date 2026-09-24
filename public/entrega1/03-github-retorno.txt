@@ -1,0 +1,4 @@
+Terceira Evidência github-retorno
+
+Homepage URL: https://oauth-pages-lab-sophia.pages.dev 
+Authorization callback URL: https://oauth-pages-lab-sophia.pages.dev/oauth/callback/github
